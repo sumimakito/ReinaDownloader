@@ -42,7 +42,7 @@ private DownloadTask task;
 ...
 
 task = new DownloadTask(this, dlUrl, savDir, threads, new DownloadProgressListener(){
-@Override
+	@Override
 	public void onDownloadStart(int length)
 	{
 		//Call when download is started.
@@ -67,7 +67,7 @@ task = new DownloadTask(this, dlUrl, savDir, threads, new DownloadProgressListen
 		//Call when download progress is changed.
 		Log.i("[dpl_callback]", "------downloaded size:" + size);
 	}
-	});
+});
 ```
 
 ##### Start download
