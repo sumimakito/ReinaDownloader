@@ -42,32 +42,32 @@ private DownloadTask task;
 ...
 
 task = new DownloadTask(this, dlUrl, savDir, threads, new DownloadProgressListener(){
-				@Override
-				public void onDownloadStart(int length)
-				{
-					//Call when download is started.
-Log.i("[dpl_callback]", "------download started!");
-Log.i("[dpl_callback]", "------file length:"+length);
-				}
-				@Override
-				public void onDownloadFinish()
-				{
-					//Call when download is finished.
-					Log.i("[dpl_callback]", "------download finished!");
-				}
-				@Override
-				public void onDownloadError(Exception e)
-				{
-					//Call when an exception is thrown.
-					Log.e("[dpl_callback]", "------download error:"+e.getMessage());
-				}
-				@Override
-				public void onDownloadProgress(int size)
-				{
-					//Call when download progress is changed.
-					Log.i("[dpl_callback]", "------downloaded size:"+size);
-				}
-			});
+@Override
+	public void onDownloadStart(int length)
+	{
+		//Call when download is started.
+		Log.i("[dpl_callback]", "------download started!");
+		Log.i("[dpl_callback]", "------file length:" + length);
+	}
+	@Override
+	public void onDownloadFinish()
+	{
+		//Call when download is finished.
+		Log.i("[dpl_callback]", "------download finished!");
+	}
+	@Override
+	public void onDownloadError(Exception e)
+	{
+		//Call when an exception is thrown.
+		Log.e("[dpl_callback]", "------download error:" + e.getMessage());
+	}
+	@Override
+	public void onDownloadProgress(int size)
+	{
+		//Call when download progress is changed.
+		Log.i("[dpl_callback]", "------downloaded size:" + size);
+	}
+	});
 ```
 
 ##### Start download
