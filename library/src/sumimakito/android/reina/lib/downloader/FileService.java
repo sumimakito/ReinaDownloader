@@ -9,10 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import sumimakito.android.reina.lib.downloader.*;
 
-/**
- * bean
- * 
- */
+
 public class FileService {
 	private DBOpenHelper openHelper;
 
@@ -20,12 +17,6 @@ public class FileService {
 		openHelper = new DBOpenHelper(context);
 	}
 
-	/**
-	 * 获取每条线程已经下载的文件长度
-	 * 
-	 * @param path
-	 * @return
-	 */
 	public Map<Integer, Integer> getData(String path) {
 		SQLiteDatabase db = openHelper.getReadableDatabase();
 		Cursor cursor = db
@@ -41,12 +32,6 @@ public class FileService {
 		return data;
 	}
 
-	/**
-	 * 保存每条线程已经下载的文件长度
-	 * 
-	 * @param path
-	 * @param map
-	 */
 	public void save(String path, Map<Integer, Integer> map) {// int threadid,
 		// int position
 		SQLiteDatabase db = openHelper.getWritableDatabase();
@@ -63,13 +48,7 @@ public class FileService {
 		}
 		db.close();
 	}
-
-	/**
-	 * 实时更新每条线程已经下载的文件长度
-	 * 
-	 * @param path
-	 * @param map
-	 */
+	
 	public void update(String path, int threadId, int pos) {
 		SQLiteDatabase db = openHelper.getWritableDatabase();
 		db.execSQL(
@@ -78,11 +57,6 @@ public class FileService {
 		db.close();
 	}
 
-	/**
-	 * 当文件下载完成后，删除对应的下载记录
-	 * 
-	 * @param path
-	 */
 	public void delete(String path) {
 		SQLiteDatabase db = openHelper.getWritableDatabase();
 		db.execSQL("delete from filedownlog where downpath=?",

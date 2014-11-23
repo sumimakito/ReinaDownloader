@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
-	private static final String DBNAME = "eric.db";
+	private static final String DBNAME = "reina_dl.db";
 	private static final int VERSION = 1;
 
 	public DBOpenHelper(Context context) {
@@ -14,7 +14,6 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// 创建filedownlog表
 		db.execSQL("CREATE TABLE IF NOT EXISTS filedownlog (id integer primary key autoincrement, downpath varchar(100), threadid INTEGER, downlength INTEGER)");
 	}
 
