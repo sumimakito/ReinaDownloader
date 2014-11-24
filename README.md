@@ -10,6 +10,13 @@ Multi-thread downloading library for Android projects.
 * Callback interfaces. √
 * Handling Exceptions. √
 * Multi-task management. 
+* Synchronized communication between threads.
+
+#### KNOWN BUG
+
+* Please keep the number of your download threads less than eight(five is recommended).
+
+* Too many threads might cause unpredictable exceptions such as losing track of threads or even worse.
 
 #### Usages
 
@@ -90,7 +97,8 @@ task.terminate();
 
 #### Download Sample APK
 
-* [Dropbox](https://www.dropbox.com/s/3h99f578dongraw/ReinaDownloaderDemo.apk)
+* [Dropbox]( https://www.dropbox.com/s/3h99f578dongraw/ReinaDownloaderDemo.apk)
+
 
 (c)2014 SumiMakito.
 
