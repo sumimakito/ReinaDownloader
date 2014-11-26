@@ -3,6 +3,8 @@ ReinaDownloader
 
 Multi-thread downloading library for Android projects.
 
+> 
+
 #### Todo List:
 
 * Multi-thread downloading. √
@@ -11,12 +13,13 @@ Multi-thread downloading library for Android projects.
 * Handling Exceptions. √
 * Multi-task management. 
 * Synchronized communication between threads.
+* More detailed callback interfaces.
 
 #### KNOWN BUG
 
-* Please keep the number of your download threads less than eight(five is recommended).
+> Too many threads might cause unpredictable exceptions such as losing track of threads or even worse.
 
-* Too many threads might cause unpredictable exceptions such as losing track of threads or even worse.
+* Please keep the number of your download threads less than eight(five is recommended).
 
 #### Usages
 
@@ -25,8 +28,8 @@ Multi-thread downloading library for Android projects.
 *Declare these permissions in Manifest first.*
 
 ```xml
-<uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+						<uses-permission android:name="android.permission.INTERNET" />
+						<uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
@@ -97,7 +100,7 @@ task.exit();
 new Thread(task).start();
 ```
 
-*If you had already TERMINATED the task, nothing will happen when resuming.*
+*If you had already TERMINATED the task, downloading will start from scratch.*
 
 ##### Terminate
 
@@ -107,9 +110,10 @@ task.terminate();
 
 #### Download Sample APK
 
-* [Dropbox]( https://www.dropbox.com/s/3h99f578dongraw/ReinaDownloaderDemo.apk)
+* Download from [Dropbox]( https://www.dropbox.com/s/3h99f578dongraw/ReinaDownloaderDemo.apk).
+* Download from [Google Drive](https://docs.google.com/file/d/0B_-0A4yjEnvMWDh2S0MzbzZkUm8/edit?usp=docslist_api).
 
 
-(c)2014 SumiMakito.
+####### (c)2014 SumiMakito.
 
-About Myself: http://me.keep.moe/
+####### About Myself: http://me.keep.moe/
