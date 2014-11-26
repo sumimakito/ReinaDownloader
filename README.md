@@ -89,6 +89,16 @@ new Thread(task).start();
 task.exit();
 ```
 
+##### Resume
+
+*Same as starting a new download task. You can also use an exist instance to resume downloading progress.*
+
+```java
+new Thread(task).start();
+```
+
+*If you had already TERMINATED the task, nothing will happen when resuming.*
+
 ##### Terminate
 
 ```java
