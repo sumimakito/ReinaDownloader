@@ -114,6 +114,6 @@ task.terminate();
 * Download from [Google Drive](https://docs.google.com/file/d/0B_-0A4yjEnvMWDh2S0MzbzZkUm8/edit?usp=docslist_api).
 
 
-####### (c)2014 SumiMakito.
+###### (c)2014 SumiMakito.
 
-####### About Myself: http://me.keep.moe/
+###### About Myself: http://me.keep.moe/
