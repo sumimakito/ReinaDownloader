@@ -28,8 +28,8 @@ Multi-thread downloading library for Android projects.
 *Declare these permissions in Manifest first.*
 
 ```xml
-						<uses-permission android:name="android.permission.INTERNET" />
-						<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+     <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
