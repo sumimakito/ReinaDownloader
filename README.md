@@ -21,6 +21,12 @@ Multi-thread downloading library for Android projects.
 
 * Please keep the number of your download threads less than eight(five is recommended).
 
+#### NOTICE
+
+* If you initialized the DownloadTask in an Activity, you will lose communication with downloading tasks after the Activity destroied.
+
+> To solve this issue, we recommend you to create a List<DownloadTask> to save these instances inside.
+
 #### Usages
 
 ##### Permissions Requirement
