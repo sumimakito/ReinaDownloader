@@ -86,6 +86,8 @@ task = new DownloadTask(this, dlUrl, savDir, threads, new DownloadProgressListen
 new Thread(task).start();
 ```
 
+> NOTICE: You can get the total size of the file inside the callback interface "onDownloadStart(int size)".
+
 ##### Pause
 
 ```java
