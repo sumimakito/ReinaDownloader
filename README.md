@@ -121,6 +121,6 @@ task.terminate();
 * Download from [Dropbox]( https://www.dropbox.com/s/3h99f578dongraw/ReinaDownloaderDemo.apk).
 * Download from [Google Drive](https://docs.google.com/file/d/0B_-0A4yjEnvMWDh2S0MzbzZkUm8/edit?usp=docslist_api).
 
-###### (c)2014 SumiMakito.
+###### &copy;2014-2015 SumiMakito.
 
 ###### About Myself: http://me.keep.moe/
