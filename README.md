@@ -7,13 +7,13 @@ Multi-thread downloading library for Android projects.
 
 #### Todo List:
 
-* Multi-thread downloading. √
-* Broken-point continuingly-transferring support. √
-* Callback interfaces. √
-* Handling Exceptions. √
-* Multi-task management. 
-* Synchronized communication between threads.
-* More detailed callback interfaces.
+[x] Multi-thread downloading. 
+[x] Broken-point continuingly-transferring support. 
+[x] Callback interfaces. 
+[x] Handling Exceptions. 
+[] Multi-task management. 
+[] Synchronized communication between threads.
+[] More detailed callback interfaces.
 
 #### KNOWN BUG
 
