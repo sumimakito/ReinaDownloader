@@ -7,13 +7,13 @@ Multi-thread downloading library for Android projects.
 
 #### Todo List:
 
-[x] Multi-thread downloading. 
-[x] Broken-point continuingly-transferring support. 
-[x] Callback interfaces. 
-[x] Handling Exceptions. 
-[] Multi-task management. 
-[] Synchronized communication between threads.
-[] More detailed callback interfaces.
+- [x] Multi-thread downloading. 
+- [x] Broken-point continuingly-transferring support. 
+- [x] Callback interfaces. 
+- [x] Handling Exceptions. 
+- [ ] Multi-task management. 
+- [ ] Synchronized communication between threads.
+- [ ] More detailed callback interfaces.
 
 #### KNOWN BUG
 
@@ -121,6 +121,6 @@ task.terminate();
 * Download from [Dropbox]( https://www.dropbox.com/s/3h99f578dongraw/ReinaDownloaderDemo.apk).
 * Download from [Google Drive](https://docs.google.com/file/d/0B_-0A4yjEnvMWDh2S0MzbzZkUm8/edit?usp=docslist_api).
 
-###### &copy;2014-2015 SumiMakito.
+###### (c)2014 SumiMakito.
 
 ###### About Myself: http://me.keep.moe/
