@@ -5,12 +5,12 @@ Multi-thread downloading library for Android projects.
 
 #### Todo List:
 
-*  Multi-thread downloading. 
-*  Broken-point continuingly-transferring support. 
-*  Callback interfaces. 
-*  Handling Exceptions. 
-*  Multi-task management. 
-*  Synchronized communication between threads.
+* Multi-thread downloading. √
+* Broken-point continuingly-transferring support. √
+* Callback interfaces. √
+* Handling Exceptions. √
+* Multi-task management. √
+* Synchronized communication between threads. ×
 
 #### What's new in v1.1.0?
 
@@ -97,6 +97,7 @@ import sumimakito.android.reina.downloader.*;
  ```
 
  * APIs
+ 
   * Set default download path
   ```java
   public void setDefaultPath(File path);
@@ -106,17 +107,24 @@ import sumimakito.android.reina.downloader.*;
   ```java
   public String newTask(String dlUrl, File savDir, int threadNum, boolean startImmediately);
   ```
-  >If you have set a default download path, you can use the code below to add new tasks.
+  
+  > If you have set a default download path, you can use the code below to add new tasks.
+  
   ```java
   public String newTask(String dlUrl, int threadNum, boolean startImmediately);
   ```
    * dlUrl: Url to download file from.
+   
    * savDir: Where should downloaded file save to.(This can be ignored when a default download path is set.)
+   
    * threadNum: How many threads will be used for download.
+   
    * startImmediately: If true, task will start automatically after added.
+   
    > This method will return a String taskId, you can use taskId to manage a single task.
   
   * Manage a single task.
+  
   ```java
   //Start a task
   public void start(String taskId);
@@ -132,6 +140,7 @@ import sumimakito.android.reina.downloader.*;
 * Single task:
 
  * Get instance
+ 
 ```java
 DownloadTask task = new DownloadTask(this, dlUrl, savDir, threads, new DownloadProgressListener(){
 	@Override
@@ -180,7 +189,7 @@ task.exit();
 
 ##### Resume
 
-*Same as starting a new download task. You can also use an exist instance to resume downloading progress.*
+* Same as starting a new download task. You can also use an exist instance to resume downloading progress. *
 
 ```java
 new Thread(task).start();
