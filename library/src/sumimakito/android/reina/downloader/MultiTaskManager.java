@@ -11,7 +11,7 @@ public class MultiTaskManager
 	private HashMap<String, DownloadTask> mTasks;
 	private DownloadCallbacks pCallbacks;
 
-	private String defaultPath;
+	private File defaultPath=null;
 
 	private Context mContext;
 
@@ -22,7 +22,7 @@ public class MultiTaskManager
 		this.pCallbacks = callbacks;
 	}
 
-	public void setDefaultPath(String path)
+	public void setDefaultPath(File path)
 	{
 		this.defaultPath = path;
 	}
@@ -45,7 +45,8 @@ public class MultiTaskManager
 		else
 		{
 			DownloadTask task = new DownloadTask(mContext, dlUrl, savDir, threads, pCallbacks);
-			if(startImmediately){
+			if (startImmediately)
+			{
 				new Thread(task).start();
 			}
 			mTasks.put(taskId, task);
@@ -53,95 +54,176 @@ public class MultiTaskManager
 		return taskId;
 	}
 
+	public String newTask(String dlUrl, int threads, boolean startImmediately) throws Exception
+	{
+		if (defaultPath != null)
+		{
+			String taskId =MD5Sum.get(dlUrl);
+			if (mTasks.containsKey(taskId))
+			{
+				DownloadTask task = mTasks.get(taskId);
+				if (task != null)
+				{
+					if (task.getStatus() == DownloadTask.STATUS_EXCEPTION_THROWN
+						|| task.getStatus() == DownloadTask.STATUS_TERMINATED)
+					{
+						mTasks.remove(taskId);
+					}
+				}
+			}
+			else
+			{
+				DownloadTask task = new DownloadTask(mContext, dlUrl, defaultPath, threads, pCallbacks);
+				if (startImmediately)
+				{
+					new Thread(task).start();
+				}
+				mTasks.put(taskId, task);
+			}
+			return taskId;
+		}
+		else
+		{
+			throw new Exception("You have not set a default path to save downloaded files.");
+		}
+	}
+
 	public void start(String taskId) throws Exception
 	{
 		if (mTasks.containsKey(taskId))
 		{
 			DownloadTask task = mTasks.get(taskId);
-			if(task.getStatus()!=DownloadTask.STATUS_EXCEPTION_THROWN){
-				if(task.getStatus()==DownloadTask.STATUS_SUSPENDED){
-					throw new Exception("This task is suspended, please use resume() method. (taskId:"+taskId+")");
-				}else if(task.getStatus()==DownloadTask.STATUS_STARTED){
-					throw new Exception("This task is already started. (taskId:"+taskId+")");
-				}else{
+			if (task.getStatus() != DownloadTask.STATUS_EXCEPTION_THROWN)
+			{
+				if (task.getStatus() == DownloadTask.STATUS_SUSPENDED)
+				{
+					throw new Exception("This task is suspended, please use resume() method. (taskId:" + taskId + ")");
+				}
+				else if (task.getStatus() == DownloadTask.STATUS_STARTED)
+				{
+					throw new Exception("This task is already started. (taskId:" + taskId + ")");
+				}
+				else
+				{
 					//Prepared
 					//Terminated
 					new Thread(task).start();
 				}
-			}else{
+			}
+			else
+			{
 				//This may cause exception again.
 				new Thread(task).start();
 			}
-		}else{
-			throw new Exception("No task matches the given taskId:"+taskId);
+		}
+		else
+		{
+			throw new Exception("No task matches the given taskId:" + taskId);
 		}
 	}
-	
-	public void resume(String taskId) throws Exception{
+
+	public void resume(String taskId) throws Exception
+	{
 		if (mTasks.containsKey(taskId))
 		{
 			DownloadTask task = mTasks.get(taskId);
-			if(task.getStatus()!=DownloadTask.STATUS_EXCEPTION_THROWN){
-				if(task.getStatus()==DownloadTask.STATUS_SUSPENDED){
+			if (task.getStatus() != DownloadTask.STATUS_EXCEPTION_THROWN)
+			{
+				if (task.getStatus() == DownloadTask.STATUS_SUSPENDED)
+				{
 					new Thread(task).start();
-				}else if(task.getStatus()==DownloadTask.STATUS_STARTED){
-					throw new Exception("This task is already started. (taskId:"+taskId+")");
-				}else if(task.getStatus()==DownloadTask.STATUS_TERMINATED){
-					throw new Exception("This task is already terminated, please use start() method. (taskId:"+taskId+")");
-				}else{
-					//Prepared
-					throw new Exception("This task is just prepared, please use start() method to start download. (taskId:"+taskId+")");
 				}
-			}else{
-				throw new Exception("This task has thrown an exception, please use start() method to restart task. (taskId:"+taskId+")");
+				else if (task.getStatus() == DownloadTask.STATUS_STARTED)
+				{
+					throw new Exception("This task is already started. (taskId:" + taskId + ")");
+				}
+				else if (task.getStatus() == DownloadTask.STATUS_TERMINATED)
+				{
+					throw new Exception("This task is already terminated, please use start() method. (taskId:" + taskId + ")");
+				}
+				else
+				{
+					//Prepared
+					throw new Exception("This task is just prepared, please use start() method to start download. (taskId:" + taskId + ")");
+				}
 			}
-		}else{
-			throw new Exception("No task matches the given taskId:"+taskId);
+			else
+			{
+				throw new Exception("This task has thrown an exception, please use start() method to restart task. (taskId:" + taskId + ")");
+			}
+		}
+		else
+		{
+			throw new Exception("No task matches the given taskId:" + taskId);
 		}
 	}
-	
-	public void suspend(String taskId) throws Exception{
+
+	public void suspend(String taskId) throws Exception
+	{
 		if (mTasks.containsKey(taskId))
 		{
 			DownloadTask task = mTasks.get(taskId);
-			if(task.getStatus()!=DownloadTask.STATUS_EXCEPTION_THROWN){
-				if(task.getStatus()==DownloadTask.STATUS_SUSPENDED){
-					throw new Exception("This task is already suspended. (taskId:"+taskId+")");
-				}else if(task.getStatus()==DownloadTask.STATUS_TERMINATED){
-					throw new Exception("This task is already terminated. (taskId:"+taskId+")");
-				}else if(task.getStatus()==DownloadTask.STATUS_PREPARED){
-					throw new Exception("This task is already terminated. (taskId:"+taskId+")");
-				}else{
+			if (task.getStatus() != DownloadTask.STATUS_EXCEPTION_THROWN)
+			{
+				if (task.getStatus() == DownloadTask.STATUS_SUSPENDED)
+				{
+					throw new Exception("This task is already suspended. (taskId:" + taskId + ")");
+				}
+				else if (task.getStatus() == DownloadTask.STATUS_TERMINATED)
+				{
+					throw new Exception("This task is already terminated. (taskId:" + taskId + ")");
+				}
+				else if (task.getStatus() == DownloadTask.STATUS_PREPARED)
+				{
+					throw new Exception("This task is already terminated. (taskId:" + taskId + ")");
+				}
+				else
+				{
 					//Started
 					new Thread(task).start();
 				}
-			}else{
-				throw new Exception("This task has thrown an exception, please use start() method to restart task. (taskId:"+taskId+")");
 			}
-		}else{
-			throw new Exception("No task matches the given taskId:"+taskId);
+			else
+			{
+				throw new Exception("This task has thrown an exception, please use start() method to restart task. (taskId:" + taskId + ")");
+			}
+		}
+		else
+		{
+			throw new Exception("No task matches the given taskId:" + taskId);
 		}
 	}
-	
-	public void terminate(String taskId) throws Exception{
+
+	public void terminate(String taskId) throws Exception
+	{
 		if (mTasks.containsKey(taskId))
 		{
 			DownloadTask task = mTasks.get(taskId);
-			if(task.getStatus()!=DownloadTask.STATUS_EXCEPTION_THROWN){
-				if(task.getStatus()==DownloadTask.STATUS_PREPARED){
-					throw new Exception("This task is just prepared. (taskId:"+taskId+")");
-				}else if(task.getStatus()==DownloadTask.STATUS_TERMINATED){
-					throw new Exception("This task is already terminated, please use start() method. (taskId:"+taskId+")");
-				}else{
+			if (task.getStatus() != DownloadTask.STATUS_EXCEPTION_THROWN)
+			{
+				if (task.getStatus() == DownloadTask.STATUS_PREPARED)
+				{
+					throw new Exception("This task is just prepared. (taskId:" + taskId + ")");
+				}
+				else if (task.getStatus() == DownloadTask.STATUS_TERMINATED)
+				{
+					throw new Exception("This task is already terminated, please use start() method. (taskId:" + taskId + ")");
+				}
+				else
+				{
 					//Started
 					//Prepared
 					task.terminate();
 				}
-			}else{
-				throw new Exception("This task has thrown an exception, please use start() method to restart task. (taskId:"+taskId+")");
 			}
-		}else{
-			throw new Exception("No task matches the given taskId:"+taskId);
+			else
+			{
+				throw new Exception("This task has thrown an exception, please use start() method to restart task. (taskId:" + taskId + ")");
+			}
+		}
+		else
+		{
+			throw new Exception("No task matches the given taskId:" + taskId);
 		}
 	}
 
