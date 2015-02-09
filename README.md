@@ -1,7 +1,7 @@
 ReinaDownloader
 ===============
 
-Multi-thread downloading library for Android projects.
+Multi-thread &amp; Multi-task downloading library for Android projects.
 
 #### Todo List:
 
