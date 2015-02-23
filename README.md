@@ -210,5 +210,5 @@ task.terminate();
 
 ###### Copyright(c)2014-2015 Sumi Makito.
 ###### Licensed under GNU GPL v3. Read [License](LISENSE).
-###### Blog: http://w.keep.moe/
+###### Blog: http://www.keep.moe/
 ###### About myself: http://me.keep.moe/
